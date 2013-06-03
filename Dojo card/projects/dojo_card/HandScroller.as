@@ -129,7 +129,7 @@ package projects.dojo_card
 				if ( _card.currentFrame > 1 )
 				{
 					_card.removeEventListener(MouseEvent.ROLL_OVER, onCardOver);
-					_graphic.x = _card.width - _graphic.width - 100;
+					_graphic.x = _card.width * _graphic.scaleX - _graphic.width - 70
 					//trace(_graphic.scaleX, _card.width, _card.scaleX);
 					_scrollbar.dragger.x = _scrollbar.limits.width;
 					
@@ -139,10 +139,9 @@ package projects.dojo_card
 						_card_timer.addEventListener(TimerEvent.TIMER, onCardTimer);
 						_card_timer.start();
 					}
-				} else if ( _graphic.x > _card.width - _graphic.width - 100 ) {
+				} else if ( _graphic.x > _card.width * _graphic.scaleX - _graphic.width - 70 ) {
 					//_slogans.checkForChange(17);
 					_card_mode = false;
-					
 					_card.addEventListener(MouseEvent.ROLL_OVER, onCardOver);
 				}
 			}
@@ -182,7 +181,7 @@ package projects.dojo_card
 			if (  _graphic.x != _card.width * _graphic.scaleX - _graphic.width )
 			{
 				TweenMax.killTweensOf(_graphic);
-				TweenMax.to(_graphic, .3, { x: _card.width * _graphic.scaleX - _graphic.width, onComplete: function() : void { if ( _card_mode && _card.hitTestPoint(mouseX, mouseY) ) _card.over(); } } );
+				TweenMax.to(_graphic, .3, { x: _card.width * _graphic.scaleX - _graphic.width - 70, onComplete: function() : void { if ( _card_mode && _card.hitTestPoint(mouseX, mouseY) ) _card.over(); } } );
 			} else {
 				_card.over();
 			}
@@ -293,7 +292,7 @@ package projects.dojo_card
 				
 				_resizer.rezoHeight(piece, piece_height, true);
 				piece.x = x_position;
-				x_position += piece.width;
+				x_position += piece.width - 1;
 			}
 		}
 		
